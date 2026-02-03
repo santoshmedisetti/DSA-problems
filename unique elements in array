@@ -1,0 +1,14 @@
+n=int(input())
+arr=list(map(int,input().split()))
+unique_elements=[]
+for i in range(n):
+    count=0
+    for j in range(n):
+        if arr[i]==arr[j]:
+            count+=1
+
+
+    if count==1:
+        unique_elements.append(arr[i])
+for ele in unique_elements:
+    print(ele,end=" ")
