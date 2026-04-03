@@ -1,0 +1,7 @@
+def rotateString(s: str, goal: str) -> bool:
+    # Step 1: lengths must match
+    if len(s) != len(goal):
+        return False
+    
+    # Step 2: check if goal is a substring of s+s
+    return goal in (s + s)
