@@ -1,0 +1,28 @@
+class ArrayManipulator:
+    def rearrange_by_sign(self, A, n):
+        pos = []  # List to hold positive numbers
+        neg = []  # List to hold negative numbers
+
+        # Step 1: Separate positives and negatives
+        for i in range(n):
+            if A[i] > 0:
+                pos.append(A[i])
+            else:
+                neg.append(A[i])
+
+        # Step 2: Place positives at even indices, negatives at odd indices
+        for i in range(n // 2):
+            A[2 * i] = pos[i]      # Even index → positive
+            A[2 * i + 1] = neg[i]  # Odd index → negative
+
+        return A
+
+# Driver code
+if __name__ == "__main__":
+    A = [1, 2, -4, -5]
+    n = len(A)
+
+    obj = ArrayManipulator()
+    result = obj.rearrange_by_sign(A, n)
+
+    print(*result)  # Print result with space
