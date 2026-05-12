@@ -1,0 +1,9 @@
+class Solution:
+    def search(self, nums, k):
+        ans=-1
+        for i in range(len(nums)):
+            if nums[i]==k:
+                ans=i
+        return ans
+
+        
