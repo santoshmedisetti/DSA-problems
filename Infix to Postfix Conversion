@@ -1,0 +1,58 @@
+class Solution:
+    
+    def precedence(self, op):
+        if op == '^':
+            return 3
+        if op in ('*', '/'):
+            return 2
+        if op in ('+', '-'):
+            return 1
+        return -1
+
+    def is_right_associative(self, op):
+        return op == '^'
+
+    def infixToPostfix(self, s: str) -> str:
+        stack = []
+        ans = []
+
+        for ch in s:
+
+            # Operand
+            if ch.isalnum():
+                ans.append(ch)
+
+            # Opening bracket
+            elif ch == '(':
+                stack.append(ch)
+
+            # Closing bracket
+            elif ch == ')':
+                while stack and stack[-1] != '(':
+                    ans.append(stack.pop())
+
+                if stack:
+                    stack.pop()   # remove '('
+
+            # Operator
+            else:
+                while (
+                    stack and stack[-1] != '(' and
+                    (
+                        self.precedence(stack[-1]) > self.precedence(ch)
+                        or
+                        (
+                            self.precedence(stack[-1]) == self.precedence(ch)
+                            and not self.is_right_associative(ch)
+                        )
+                    )
+                ):
+                    ans.append(stack.pop())
+
+                stack.append(ch)
+
+        # Remaining operators
+        while stack:
+            ans.append(stack.pop())
+
+        return "".join(ans)
