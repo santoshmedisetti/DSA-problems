@@ -1,0 +1,31 @@
+class Solution:
+    
+    # Function to insert an element at the bottom of the stack
+    def insertAtBottom(self, stack, x):
+        # Base case
+        if not stack:
+            stack.append(x)
+            return
+        
+        top_element = stack.pop()
+        
+        # Recursive call
+        self.insertAtBottom(stack, x)
+        
+        # Push the stored element back
+        stack.append(top_element)
+    
+    
+    # Function to reverse the stack using recursion
+    def reverseStack(self, stack):
+        # Base case
+        if not stack:
+            return
+        
+        top_element = stack.pop()
+        
+        # Reverse remaining stack
+        self.reverseStack(stack)
+        
+        # Insert current element at bottom
+        self.insertAtBottom(stack, top_element)
