@@ -1,0 +1,11 @@
+       
+class Solution:
+    def searchKey(self, head, key):
+        # Your code goes here
+        current=head
+        while current:
+            if current.val==key:
+                return True
+            current=current.next
+        return False
+
