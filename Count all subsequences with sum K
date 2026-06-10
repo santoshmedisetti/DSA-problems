@@ -1,0 +1,23 @@
+def count_subsequences(nums, k):
+    n = len(nums)
+
+    def dfs(index, current_sum):
+        if index == n:
+            return 1 if current_sum == k else 0
+
+        # Include current element
+        include = dfs(index + 1, current_sum + nums[index])
+
+        # Exclude current element
+        exclude = dfs(index + 1, current_sum)
+
+        return include + exclude
+
+    return dfs(0, 0)
+
+
+# Example
+nums = [1, 10, 4, 5]
+k = 16
+
+print(count_subsequences(nums, k))
