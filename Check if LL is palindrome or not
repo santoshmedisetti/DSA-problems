@@ -1,0 +1,40 @@
+class Solution:
+    def reverse(self, head):
+        prev = None
+        curr = head
+
+        while curr:
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+
+        return prev
+
+    def isPalindrome(self, head):
+        if not head or not head.next:
+            return True
+
+        # Find the middle
+        slow = head
+        fast = head
+
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Reverse second half
+        second_half = self.reverse(slow.next)
+
+        # Compare both halves
+        first_half = head
+        temp = second_half
+
+        while temp:
+            if first_half.val != temp.val:
+                return False
+
+            first_half = first_half.next
+            temp = temp.next
+
+        return True
