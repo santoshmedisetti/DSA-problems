@@ -1,0 +1,14 @@
+class Solution:
+    def inorder(self, root):
+        #your code goes here
+        res=[]
+        def dfs(node):
+            if not node:
+                return 
+            dfs(node.left)
+            res.append(node.data)
+            dfs(node.right)
+        dfs(root)
+        return res
+
+
