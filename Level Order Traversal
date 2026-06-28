@@ -1,0 +1,16 @@
+
+class Solution:
+    def levelOrder(self, root):
+        #your code goes here
+        res=[]
+        def dfs(node,level):
+            if not node:
+                return 
+            if level==len(res):
+                res.append([])
+            res[level].append(node.data)
+
+            dfs(node.left,level+1)
+            dfs(node.right,level+1)
+        dfs(root,0)
+        return res
